@@ -58,9 +58,10 @@ import { MainDiv } from "./app.styled";
 //   );
 // };
 // ---------------------------------------------------------- || ReWorking
+
+
 export const App = () => {
   const contacts = useSelector(store => store.contacts);
-
   const dispatch = useDispatch();
 
   const onAddContact = (contact) => {

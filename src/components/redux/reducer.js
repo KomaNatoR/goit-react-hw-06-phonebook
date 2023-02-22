@@ -13,13 +13,13 @@ const initialState = {
 const reduser = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CONTACT:
-            const newContacts = [...state.contacts, action.payload];
+            const newContacts = [action.payload, ...state.contacts];
             return {...state, contacts: newContacts};
         case DELETE_CONTACT:
             const result = state.contacts.filter(item => item.id !== action.payload);
-            return {...state, books: result};
+            return {...state, contacts: result};
         default:
-            return state;;
+            return state;
     };
 };
 
