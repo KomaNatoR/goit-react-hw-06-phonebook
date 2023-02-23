@@ -1,20 +1,33 @@
+// import { nanoid } from "nanoid";
+
+// import { ADD_CONTACT, DELETE_CONTACT } from "./contacts-types";
+
+// export const addContact = payload => {
+//     return {
+//         type: ADD_CONTACT,
+//         payload: {
+//             id: nanoid(),
+//             ...payload,
+//         },
+//     }
+// };
+
+// export const deleteContact = payload => {
+//     return {
+//         type: DELETE_CONTACT,
+//         payload,
+//     };
+// };
+// -------------------------------------------------- | Redux-Toolkit
+import { createAction } from "@reduxjs/toolkit"; 
 import { nanoid } from "nanoid";
 
-import { ADD_CONTACT, DELETE_CONTACT } from "./contacts-types";
-
-export const addContact = payload => {
+export const addContact = createAction("contacts/add", data => {
     return {
-        type: ADD_CONTACT,
         payload: {
+            ...data,
             id: nanoid(),
-            ...payload,
-        },
+        }
     }
-};
-
-export const deleteContact = payload => {
-    return {
-        type: DELETE_CONTACT,
-        payload,
-    };
-};
+});
+export const deleteContact = createAction("contacts/delete");
