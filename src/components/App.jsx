@@ -1,7 +1,5 @@
 // import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
-import { addContact, deleteContact, setFilter } from "./redux/action";
 
 import FormikForm from "./Form";
 import Filter from "./Filter";
@@ -58,7 +56,15 @@ import { MainDiv } from "./app.styled";
 //   );
 // };
 // ---------------------------------------------------------- || ReWorking
-import { getAllContacts, getFilter, getFilteredContacts } from "./redux/selectors";
+import { useSelector, useDispatch } from "react-redux";
+
+// import { addContact, deleteContact, setFilter } from "./redux/action";
+// import { getAllContacts, getFilter, getFilteredContacts } from "./redux/selectors";
+
+import { addContact, deleteContact } from "./redux/contacts/contacts-action";
+import { getAllContacts } from "./redux/contacts/contacts-selectors";
+import { setFilter } from "./redux/filter/filter-action";
+import { getFilter, getFilteredContacts } from "./redux/filter/filter-selectors";
 
 export const App = () => {
   const contacts = useSelector(getAllContacts);
