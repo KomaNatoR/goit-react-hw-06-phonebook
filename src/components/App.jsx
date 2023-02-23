@@ -58,17 +58,17 @@ import { MainDiv } from "./app.styled";
 //   );
 // };
 // ---------------------------------------------------------- || ReWorking
-import { getFilter, getFilteredContacts } from "./redux/selectors";
+import { getAllContacts, getFilter, getFilteredContacts } from "./redux/selectors";
 
 export const App = () => {
-  // const contacts = useSelector(getAllContacts);
+  const contacts = useSelector(getAllContacts);
   const filteredContacts = useSelector(getFilteredContacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const onAddContact = (contact) => {
     const personNormalize = contact.name.toLowerCase().trim();
-    const contactsFind = filteredContacts.find(cont => cont.name.toLowerCase() === personNormalize);
+    const contactsFind = contacts.find(cont => cont.name.toLowerCase() === personNormalize);
 
     if (contactsFind) return alert("Це хіба можна так робити?");
     // setContacts(prevConts=>[contact,...prevConts]);
