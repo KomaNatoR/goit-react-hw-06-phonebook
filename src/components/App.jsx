@@ -58,7 +58,7 @@ import { MainDiv } from "./app.styled";
 //   );
 // };
 // ---------------------------------------------------------- || ReWorking
-import { getAllContacts, getFilter, getFilteredContacts } from "./redux/selectors";
+import { getFilter, getFilteredContacts } from "./redux/selectors";
 
 export const App = () => {
   // const contacts = useSelector(getAllContacts);
