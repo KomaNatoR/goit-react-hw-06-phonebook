@@ -1,7 +1,7 @@
 // import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { addContact, deleteContact } from "./redux/action";
+import { addContact, deleteContact, setFilter } from "./redux/action";
 
 import FormikForm from "./Form";
 import Filter from "./Filter";
@@ -58,25 +58,30 @@ import { MainDiv } from "./app.styled";
 //   );
 // };
 // ---------------------------------------------------------- || ReWorking
-
+import { getAllContacts, getFilter, getFilteredContacts } from "./redux/selectors";
 
 export const App = () => {
-  const contacts = useSelector(store => store.contacts);
+  // const contacts = useSelector(getAllContacts);
+  const filteredContacts = useSelector(getFilteredContacts);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const onAddContact = (contact) => {
     const personNormalize = contact.name.toLowerCase().trim();
-    const contactsFind = contacts.find(cont => cont.name.toLowerCase() === personNormalize);
+    const contactsFind = filteredContacts.find(cont => cont.name.toLowerCase() === personNormalize);
 
     if (contactsFind) return alert("Це хіба можна так робити?");
     // setContacts(prevConts=>[contact,...prevConts]);
     
-    const action = addContact(contact);
-    dispatch(action);
+    dispatch(addContact(contact));
   };
   const onDeleteContact = (id) => {
-    const action = deleteContact(id);
-    dispatch(action);
+    dispatch(deleteContact(id));
+  };
+  const onFilterChange = (e) => {
+    const { value } = e.target;
+
+    dispatch(setFilter (value));
   };
 
   return (
@@ -85,8 +90,8 @@ export const App = () => {
       <FormikForm hendleSubmit={onAddContact} />
       
       <h2>Contacts</h2>
-      <Filter onFilterChange={"#"} value={"#"} />
-      <ContactList onClick={onDeleteContact} contacts={contacts} />
+      <Filter onFilterChange={onFilterChange} value={filter} />
+      <ContactList onClick={onDeleteContact} contacts={filteredContacts} />
     </MainDiv>
   );
 };
