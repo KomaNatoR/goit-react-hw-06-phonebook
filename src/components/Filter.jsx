@@ -1,16 +1,19 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { useSelector } from "react-redux";
 
-const Filter = ({onFilterChange, value}) => {
+const Filter = () => {
+    const filterRezult = useSelector(({ filter }) => filter);
+
     return (
         <div>
             <label>Filter names</label>
-            <input onChange={onFilterChange} type="text" value={value} />
+            <input onChange={"onFilterChange"} type="text" value={filterRezult} />
         </div>
     );
 };
-Filter.propTypes = {
-    onFilterChange: PropTypes.func.isRequired,
-    value:PropTypes.string.isRequired,
-};
+// Filter.propTypes = {
+//     onFilterChange: PropTypes.func.isRequired,
+//     value:PropTypes.string.isRequired,
+// };
 
 export default Filter;

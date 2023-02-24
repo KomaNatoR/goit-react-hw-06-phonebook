@@ -56,48 +56,48 @@ import { MainDiv } from "./app.styled";
 //   );
 // };
 // ---------------------------------------------------------- || ReWorking
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 
 // import { addContact, deleteContact, setFilter } from "./redux/action";
 // import { getAllContacts, getFilter, getFilteredContacts } from "./redux/selectors";
 
-import { addContact, deleteContact } from "./redux/contacts/contacts-action";
-import { getAllContacts } from "./redux/contacts/contacts-selectors";
-import { setFilter } from "./redux/filter/filter-action";
-import { getFilter, getFilteredContacts } from "./redux/filter/filter-selectors";
+// import { addContact, deleteContact } from "./redux/contacts/contacts-action";
+// import { getAllContacts } from "./redux/contacts/contacts-selectors";
+// import { setFilter } from "./redux/filter/filter-action";
+// import { getFilter, getFilteredContacts } from "./redux/filter/filter-selectors";
 
 export const App = () => {
-  const contacts = useSelector(getAllContacts);
-  const filteredContacts = useSelector(getFilteredContacts);
-  const filter = useSelector(getFilter);
-  const dispatch = useDispatch();
+//   const contacts = useSelector(getAllContacts);
+//   const filteredContacts = useSelector(getFilteredContacts);
+//   const filter = useSelector(getFilter);
+//   const dispatch = useDispatch();
 
-  const onAddContact = (contact) => {
-    const personNormalize = contact.name.toLowerCase().trim();
-    const contactsFind = contacts.find(cont => cont.name.toLowerCase() === personNormalize);
+//   const onAddContact = (contact) => {
+//     const personNormalize = contact.name.toLowerCase().trim();
+//     const contactsFind = contacts.find(cont => cont.name.toLowerCase() === personNormalize);
 
-    if (contactsFind) return alert("Це хіба можна так робити?");
-    // setContacts(prevConts=>[contact,...prevConts]);
+//     if (contactsFind) return alert("Це хіба можна так робити?");
+//     // setContacts(prevConts=>[contact,...prevConts]);
     
-    dispatch(addContact(contact));
-  };
-  const onDeleteContact = (id) => {
-    dispatch(deleteContact(id));
-  };
-  const onFilterChange = (e) => {
-    const { value } = e.target;
+//     dispatch(addContact(contact));
+//   };
+//   const onDeleteContact = (id) => {
+//     dispatch(deleteContact(id));
+//   };
+//   const onFilterChange = (e) => {
+//     const { value } = e.target;
 
-    dispatch(setFilter (value));
-  };
+//     dispatch(setFilter (value));
+//   };
 
   return (
     <MainDiv>
       <h1>Phonebook</h1>
-      <FormikForm hendleSubmit={onAddContact} />
+      <FormikForm/>
       
       <h2>Contacts</h2>
-      <Filter onFilterChange={onFilterChange} value={filter} />
-      <ContactList onClick={onDeleteContact} contacts={filteredContacts} />
+      <Filter/>
+      <ContactList/>
     </MainDiv>
   );
 };

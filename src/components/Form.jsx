@@ -1,19 +1,25 @@
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addContact } from './redux/action';
+// import PropTypes from 'prop-types';
 
 import { Formik, Field, Form } from 'formik';
 import { nanoid } from 'nanoid';
+
 
 const initialValues = {
     name: '',
     number: '',
 };
 
-const FormikForm = ({hendleSubmit}) => {
+const FormikForm = () => {
+    const dispatch = useDispatch();
+
     const onSubmit = ({ name, number }, actions) => {
         let id = nanoid();
 
         let person = { id: id, name: name, number:number };
-        hendleSubmit(person);
+        // hendleSubmit(person);
+        dispatch(addContact(person));
         actions.resetForm();
     };
 
@@ -43,8 +49,8 @@ const FormikForm = ({hendleSubmit}) => {
         </Formik>
     );
 };
-FormikForm.propTypes = {
-    hendleSubmit:PropTypes.func.isRequired,
-};
+// FormikForm.propTypes = {
+//     hendleSubmit:PropTypes.func.isRequired,
+// };
 
 export default FormikForm;
