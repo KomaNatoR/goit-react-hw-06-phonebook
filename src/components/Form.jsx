@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from './redux/action';
+import { addContact } from './redux/store';
+// import { addContact } from './redux/action';
 // import PropTypes from 'prop-types';
 
 import { Formik, Field, Form } from 'formik';
@@ -12,9 +13,9 @@ const initialValues = {
 };
 
 const FormikForm = () => {
-    const contacts = useSelector(store => store.contacts);
+    const contacts = useSelector(({store}) => store.contacts);
     const dispatch = useDispatch();
-    console.log(contacts);
+    // console.log(contacts);
 
     const onSubmitAddContact = ({ name, number }, actions) => {
         let id = nanoid();

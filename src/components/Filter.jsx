@@ -1,10 +1,11 @@
 // import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
-import { setFilter } from "./redux/action";
+import { setFilter } from "./redux/store";
 
 const Filter = () => {
-    const value = useSelector(({ filter }) => filter);
+    const value = useSelector(({ store }) => store.filter);
     const dispatch = useDispatch();
+    // console.log("Value:",value);
 
     const onFilterChange = (e) => {
         const { value } = e.target;

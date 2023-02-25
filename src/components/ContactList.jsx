@@ -1,16 +1,17 @@
 // import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteContact } from "./redux/action";
+import { deleteContact } from "./redux/store";
+// import { deleteContact } from "./redux/action";
 
 const ContactList = () => {
-    const contactsStore = useSelector(({ contacts }) => contacts);
+    const contactsStore = useSelector(({store}) => store.contacts);
     const dispatch = useDispatch();
 
     const onClickTakeId = (id) => {
         dispatch(deleteContact(id));
     };
 
-    // console.log(contactsRedux);
+    // console.log(contactsStore);
     return (
         <ul>
             {contactsStore.map(cont => (
