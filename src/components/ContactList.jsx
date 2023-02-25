@@ -4,17 +4,21 @@ import { deleteContact } from "./redux/store";
 // import { deleteContact } from "./redux/action";
 
 const ContactList = () => {
-    const contactsStore = useSelector(({store}) => store.contacts);
+    const contactsStore = useSelector(store => store.contacts);
+    const filterStore = useSelector(store => store.filter);
     const dispatch = useDispatch();
+    // console.log(contactsStore);
 
     const onClickTakeId = (id) => {
         dispatch(deleteContact(id));
     };
 
     // console.log(contactsStore);
+    const normalizeFilter = filterStore.toLowerCase().trim();
+    const visiblePersons = contactsStore.filter(cont => cont.name.toLowerCase().includes(normalizeFilter));
     return (
         <ul>
-            {contactsStore.map(cont => (
+            {visiblePersons.map(cont => (
                 <li key={cont.id}>
                     <span>{cont.name}:</span>
                     <span>{cont.number}</span>

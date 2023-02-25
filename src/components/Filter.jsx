@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from "./redux/store";
 
 const Filter = () => {
-    const value = useSelector(({ store }) => store.filter);
+    const value = useSelector( store => store.filter);
     const dispatch = useDispatch();
     // console.log("Value:",value);
 

@@ -48,6 +48,8 @@ const mySlice = createSlice({
     reducers: {
         addContact(state, action) {
             // console.log(state);
+            // console.log(state.contacts);
+            // console.log("filter:", state.filter);
             const newContact = [action.payload, ...state.contacts];
             return {...state, contacts: newContact};
         },
@@ -56,18 +58,17 @@ const mySlice = createSlice({
             return { ...state, contacts: resultContact };
         },
         setFilter(state, action) {
-            console.log(state);
-            const normalizeFilter = action.payload.toLowerCase().trim();
-            const visiblePersons = state.contacts.filter(cont => cont.name.toLowerCase().includes(normalizeFilter));
-            return { filter: action.payload, contacts: visiblePersons };
+            // console.log("filterState:", state.filter);
+            // console.log("filterAction:", action.payload);
+            // const normalizeFilter = action.payload.toLowerCase().trim();
+            // const visiblePersons = state.contacts.filter(cont => cont.name.toLowerCase().includes(normalizeFilter));
+            return { ...state, filter: action.payload};
         },
     },
 });
 
 const store = configureStore({
-    reducer: {
-      store: mySlice.reducer,
-    },
+    reducer: mySlice.reducer,
 });
 export default store;
 // export default mySlice.reducer;

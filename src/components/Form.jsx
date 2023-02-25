@@ -13,7 +13,7 @@ const initialValues = {
 };
 
 const FormikForm = () => {
-    const contacts = useSelector(({store}) => store.contacts);
+    const contacts = useSelector(store => store.contacts);
     const dispatch = useDispatch();
     // console.log(contacts);
 
