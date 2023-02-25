@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from './redux/action';
 // import PropTypes from 'prop-types';
 
@@ -12,19 +12,23 @@ const initialValues = {
 };
 
 const FormikForm = () => {
+    const contacts = useSelector(store => store.contacts);
     const dispatch = useDispatch();
+    console.log(contacts);
 
-    const onSubmit = ({ name, number }, actions) => {
+    const onSubmitAddContact = ({ name, number }, actions) => {
         let id = nanoid();
+        let person = { id: id, name: name, number: number };
 
-        let person = { id: id, name: name, number:number };
-        // hendleSubmit(person);
+        const contactsFind = contacts.find(item => item.name === person.name);
+        if (contactsFind) return alert("Це хіба можна так робити?");
+        
         dispatch(addContact(person));
         actions.resetForm();
     };
 
     return (
-        <Formik onSubmit={onSubmit} initialValues={initialValues}>
+        <Formik onSubmit={onSubmitAddContact} initialValues={initialValues}>
             <Form >
                 <label >Name
                     <Field 

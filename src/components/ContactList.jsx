@@ -1,17 +1,23 @@
 // import PropTypes from 'prop-types';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteContact } from "./redux/action";
 
 const ContactList = () => {
-    const contactsRedux = useSelector(({ contacts }) => contacts);
+    const contactsStore = useSelector(({ contacts }) => contacts);
+    const dispatch = useDispatch();
+
+    const onClickTakeId = (id) => {
+        dispatch(deleteContact(id));
+    };
 
     // console.log(contactsRedux);
     return (
         <ul>
-            {contactsRedux.map(cont => (
+            {contactsStore.map(cont => (
                 <li key={cont.id}>
                     <span>{cont.name}:</span>
                     <span>{cont.number}</span>
-                    <button onClick={()=>{}}>Delete</button>
+                    <button onClick={()=>onClickTakeId(cont.id)}>Delete</button>
                 </li>
             ))}
         </ul>

@@ -1,4 +1,4 @@
-import { ADD_CONTACT } from "./types";
+import { ADD_CONTACT, DELETE_CONTACT, SET_FILTER } from "./types";
 
 const initialState = {
   contacts: [
@@ -17,9 +17,15 @@ const rootReducer = (state = initialState, action) => {
         case ADD_CONTACT:
             const newContact = [action.payload, ...state.contacts];
             return {...state, contacts: newContact};
-    
+        case DELETE_CONTACT:
+            const resultContact = state.contacts.filter(item=>item.id!==action.payload);
+            return { ...state, contacts: resultContact };
+        case SET_FILTER:
+            const normalizeFilter = action.payload.toLowerCase().trim();
+            const visiblePersons = state.contacts.filter(cont => cont.name.toLowerCase().includes(normalizeFilter));
+            return { filter: action.payload, contacts: visiblePersons };
         default:
         return state;
     };
 };
-export default rootReducer
+export default rootReducer;
