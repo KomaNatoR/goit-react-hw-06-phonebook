@@ -1,9 +1,9 @@
 // import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from "react-redux";
-import { setFilter } from "./redux/store";
+import { setFilter, getFilter } from "./redux/slice";
 
 const Filter = () => {
-    const value = useSelector( store => store.filter);
+    const value = useSelector(getFilter);
     const dispatch = useDispatch();
     // console.log("Value:",value);
 

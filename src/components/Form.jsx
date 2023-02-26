@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from './redux/store';
+import { addContact, getContacts } from './redux/slice';
 // import { addContact } from './redux/action';
 // import PropTypes from 'prop-types';
 
@@ -13,7 +13,7 @@ const initialValues = {
 };
 
 const FormikForm = () => {
-    const contacts = useSelector(store => store.contacts);
+    const contacts = useSelector(getContacts);
     const dispatch = useDispatch();
     // console.log(contacts);
 
